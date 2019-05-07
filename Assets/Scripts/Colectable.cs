@@ -16,6 +16,8 @@ public class Colectable : MonoBehaviour {
     {
         if(c.collider.tag == "Player")
         {
+            Player.points++;
+
             GameObject.Destroy(gameObject);
         }
     }

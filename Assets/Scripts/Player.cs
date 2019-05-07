@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -15,12 +16,20 @@ public class Player : MonoBehaviour {
 
     public float velRot = 130f;
 
+    public static int points;
+
+    public Text txtPon;
+
+    public GameObject portal;
+
     Animator anime;
     #endregion
 
     void Awake ()
     {
         anime = GetComponent<Animator>();
+
+        points = 0;
 	}
 	
 	void Update ()
@@ -55,6 +64,13 @@ public class Player : MonoBehaviour {
         // Acionando a animação
         float valueAnime = Mathf.Clamp(velActual / velMax, 0, 1);
         anime.SetFloat("speed", valueAnime);
+
+        txtPon.text = points.ToString();
+
+        if(points == 5)
+        {
+            portal.SetActive(true);
+        }
 	}
 
     void OnTriggerEnter(Collider col)
