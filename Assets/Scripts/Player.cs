@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -55,4 +56,12 @@ public class Player : MonoBehaviour {
         float valueAnime = Mathf.Clamp(velActual / velMax, 0, 1);
         anime.SetFloat("speed", valueAnime);
 	}
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Portal")
+        {
+            SceneManager.LoadScene("_go");
+        }
+    }
 }
